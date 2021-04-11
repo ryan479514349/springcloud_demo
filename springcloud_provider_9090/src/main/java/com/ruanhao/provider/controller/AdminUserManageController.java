@@ -52,12 +52,12 @@ public class AdminUserManageController{
         int userId = 1;
         try {
             //调用有返回数据类型的方法取到城市名称
-            /*String userName = userController.getUserById((long) userId).getCityName();
-            rmap.put("userName",userName);*/
+            String userName = userController.getUserById((long) userId).getCityName();
+            rmap.put("userName",userName);
 
             //调用无返回数据类型的方法取到城市名称
-            userController.getUserById((long) userId).getCityName();
-            rmap.put("CityName",userController.getUserById((long) userId).getCityName());
+            /*userController.getUserById((long) userId).getCityName();
+            rmap.put("CityName",userController.getUserById((long) userId).getCityName());*/
         } catch (ParseException e) {
             e.printStackTrace();
         }
