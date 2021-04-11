@@ -1,0 +1,43 @@
+#端口号
+server:
+  port: 9099
+eureka:
+  client:
+    service-url:
+      #注册中心的地址
+      defaultZone: http://localhost:8080/eureka
+  instance:
+    instance-id: provider9090
+    prefer-ip-address: true
+#应用名称
+spring:
+  application:
+    name: provider1
+  datasource:
+    url: jdbc:mysql://localhost:3306/oa?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  type-aliases-package: com.ruanhao.provider.entity
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    refresh: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+mybatis-plus.configuration.map-underscore-to-camel-case: true
+
+
+

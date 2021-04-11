@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruanhao.provider.mapper.AdminUserManageMapper">
+    <resultMap id="BaseResultMap" type="com.ruanhao.provider.entity.IicEuserAdminUser">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+        <result column="mobile_no_pre_code" jdbcType="VARCHAR" property="mobileNoPreCode" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="is_deleted" jdbcType="TINYINT" property="deleted" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="updated_date" jdbcType="TIMESTAMP" property="updatedDate" />
+    </resultMap>
+<select id="queryAdminUserManageList" parameterType="com.ruanhao.provider.req.QueryAdminUserManageListReq"
+            resultType="com.ruanhao.provider.res.QueryAdminUserManageListRes">
+ SELECT
+    a.user_id,
+    a.user_name,
+    a.mobile_no,
+    a.mobile_no_pre_code,
+    a.created_date,
+    a.status
+    FROM iic_euser_admin_user a LEFT JOIN iic_euser_admin_base_role_user b
+    ON a.user_id = b.user_id
+    ORDER BY a.created_date DESC
+</select>
+
+</mapper>

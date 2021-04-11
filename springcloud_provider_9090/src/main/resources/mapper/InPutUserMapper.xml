@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruanhao.provider.mapper.OutUserMapper">
+    <resultMap id="BaseResultMap" type="com.ruanhao.provider.entity.IntPutEuserAdmin">
+        <id column="USER_D_ID" jdbcType="BIGINT" property="userDId" />
+        <result column="ORG_D_ID" jdbcType="BIGINT" property="orgDId" />
+        <result column="USER_D_NAMEE" jdbcType="CHAR" property="userDName" />
+        <result column="USER_D_PASSWORDD" jdbcType="CHAR" property="userDPassword" />
+        <result column="MOBILE_D_PHONE" jdbcType="CHAR" property="mobileDPhone" />
+        <result column="EMAIL_D" jdbcType="CHAR" property="dEmail" />
+        <result column="USER_CH_D_NAME" jdbcType="CHAR" property="userDChName" />
+        <result column="USER_D_BIRTHDAY" jdbcType="DATE" property="userDBirthday" />
+        <result column="USER_D_SEX" jdbcType="SMALLINT" property="userDSex" />
+        <result column="USER_PHOTO_D_URL" jdbcType="CHAR" property="userDPhotoUrl" />
+        <result column="PROVINCE_D_ID" jdbcType="INTEGER" property="provinceDId" />
+        <result column="PROVINCE_D_NAME" jdbcType="CHAR" property="provinceDName" />
+        <result column="CITY_D_ID" jdbcType="INTEGER" property="cityDId" />
+        <result column="CITY_D_NAME" jdbcType="CHAR" property="cityDName" />
+        <result column="COUNTRY_D_ID" jdbcType="INTEGER" property="countryDId" />
+        <result column="CONTRY_D_NAME" jdbcType="CHAR" property="contryDName" />
+        <result column="HOBBY_D" jdbcType="CHAR" property="hobbyD" />
+        <result column="INTRODUCE_D" jdbcType="VARCHAR" property="introduceD" />
+        <result column="CREATED_D_DATE" jdbcType="TIMESTAMP" property="createdDDate" />
+        <result column="mrg_D_Id" jdbcType="INTEGER" property="mrgDId" />
+    </resultMap>
+
+
+<insert id="saveInPutUser" parameterType="com.ruanhao.provider.res.QueryUserRes">
+    INSERT INTO out_user (
+	USER_D_NAMEE,
+	MOBILE_D_PHONE,
+	USER_D_BIRTHDAY,
+	USER_D_SEX,
+	CONTRY_D_NAME,
+	CREATED_D_DATE
+)
+VALUES
+	(
+		#{userDName,jdbcType=CHAR},
+		#{mobileDPhone,jdbcType=CHAR},
+		#{userBirthDday,jdbcType=DATE},
+		#{userDSex,jdbcType=SMALLINT},
+		#{contryDName,jdbcType=CHAR},
+		#{createdDDate,jdbcType=TIMESTAMP})
+  </insert>
+
+</mapper>

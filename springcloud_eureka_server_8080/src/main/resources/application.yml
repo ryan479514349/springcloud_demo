@@ -1,0 +1,23 @@
+server:
+  port: 8089
+
+eureka:
+  instance:
+    #配置一个实例主机名称
+    hostname: localhost
+  #配置Eureka客户端 - 为集群做准备
+  client:
+    #客户端注册到服务端的地址
+    service-url:
+     defaultZone: http://localhost:9090/eureka
+    #禁止注册中心自我注册
+    register-with-eureka: false
+    #禁止注册中心调取服务
+    fetch-registry: false
+#  server:
+#    #关闭自我保护机制 - 不推荐
+#    enable-self-preservation: false
+#配置微服务名称
+spring:
+  application:
+    name: eureka-server
