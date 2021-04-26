@@ -30,6 +30,14 @@ public class IicEuserAdmin implements Serializable {
 
     private Integer cityId;
 
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
     private String cityName;
 
     private Integer countryId;
@@ -148,14 +156,6 @@ public class IicEuserAdmin implements Serializable {
         this.cityId = cityId;
     }
 
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName == null ? null : cityName.trim();
-    }
-
     public Integer getCountryId() {
         return countryId;
     }
@@ -169,7 +169,7 @@ public class IicEuserAdmin implements Serializable {
     }
 
     public void setContryName(String contryName) {
-        this.contryName = contryName == null ? null : contryName.trim();
+        this.contryName = contryName;
     }
 
     public String getHobby() {
