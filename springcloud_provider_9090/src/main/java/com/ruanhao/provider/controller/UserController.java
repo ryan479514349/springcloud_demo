@@ -3,9 +3,6 @@ package com.ruanhao.provider.controller;
 import com.ruanhao.provider.constant.OutResConstant;
 import com.ruanhao.provider.entity.IicEuserAdmin;
 import com.ruanhao.provider.enumm.IICResEnum;
-import com.ruanhao.provider.exception.IIcRuntimeException;
-import com.ruanhao.provider.model.IICResponseModel;
-import com.ruanhao.provider.req.QueryUserReq;
 import com.ruanhao.provider.res.QueryUserRes;
 import com.ruanhao.provider.service.IUserService;
 import com.ruanhao.provider.util.GsonUtils;
@@ -13,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,20 +44,44 @@ public class UserController {
         return null;
     }
 
+    /**
+     * 时间格式化演示
+     * */
     @RequestMapping("/dateFormat")
     @ResponseBody
-    public Serializable dateFormat(QueryUserReq req){
+    public Map<String,Object> dateFormat(String createdDate){
+        StringBuffer stringBuffer = new StringBuffer();
+        Map<String,Object> dates = new HashMap<>();
+        Boolean suss = true;
         try {
             //日期转换演示
-            DateFormat dateFormat=new SimpleDateFormat("yyyy/MM/dd");
-            DateFormat dateFormat1=new SimpleDateFormat("yyyy-MM-dd");
-            Date parse = dateFormat.parse(req.getCreatedDate());
-            String dString = dateFormat1.format(parse);
-            java.sql.Date date1 = java.sql.Date.valueOf(dString);
-            return IICResponseModel.success(date1);
+            String format;
+            if (createdDate.indexOf("-")>-1){
+                format = "yyyy-MM-dd";
+            }else if (createdDate.indexOf("/")>-1){
+                format = "yyyy/MM/dd";
+            }else {
+                format = "yyyyMMdd";
+            }
+            //获取当前时间
+            long curDate = System.currentTimeMillis();
+            SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+            Date parse = dateFormat.parse(createdDate);
+            //格式化创建日期
+            String createdDateFormat = dateFormat.format(parse);
+            //格式化当前时间
+            String curDateFormat = dateFormat.format(curDate);
+            if (curDateFormat.compareTo(createdDateFormat)>0){
+                stringBuffer.append("创建时间不能小于当前时间！");
+                suss = false;
+            }
+            dates.put("createdDateFormat", createdDateFormat);
+            dates.put("curDateFormat",curDateFormat);
+            dates.put("stringBuffer",stringBuffer);
         }catch (Exception e){
-            return new IIcRuntimeException(IICResEnum.FIELD_VALIDATE_FAIL).getCode();
+            e.printStackTrace();
         }
+        return dates;
     }
 
 
@@ -94,5 +113,7 @@ public class UserController {
         }
         return resultMap;
     }
+
+
 
 }

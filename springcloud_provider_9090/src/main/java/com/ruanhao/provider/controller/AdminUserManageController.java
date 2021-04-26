@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,17 +49,12 @@ public class AdminUserManageController{
         log.info("controller层访问开始。。。 = {▆★★★★★★★}");
         Map<String,Object> rmap = new HashMap<>();
         int userId = 1;
-        try {
-            //调用有返回数据类型的方法取到城市名称
-            String userName = userController.getUserById((long) userId).getCityName();
-            rmap.put("userName",userName);
+        //调用有返回数据类型的方法取到城市名称
+            /*String userName = userController.getUserById((long) userId).getCityName();
+            rmap.put("userName",userName);*/
 
-            //调用无返回数据类型的方法取到城市名称
-            /*userController.getUserById((long) userId).getCityName();
-            rmap.put("CityName",userController.getUserById((long) userId).getCityName());*/
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        //Map<String, Object> userB = userController.getUserB();
+        //rmap.put("cityName",userB);
         return IICResponseModel.success(rmap);
     }
 
