@@ -27,7 +27,7 @@ import java.util.Map;
 public class AdminUserManageController{
 
     @Autowired
-    UserController userController;
+    DemoThe demoThe;
     /**
      * 演示调用数据1
      *
@@ -35,7 +35,7 @@ public class AdminUserManageController{
     @RequestMapping("/queryAll")
     public IICResponseModel<Map<String, Object>> queryAll(){
         log.info("getQueryUserRes调用访问开始。。。 = {▆★★★★★★★}");
-        Map<String, Object> userRes = userController.getQueryUserRes();
+        Map<String, Object> userRes = demoThe.getQueryUserRes();
         log.info("getQueryUserRes调用访问结束。。。 = {▆★★★★★★★}"+userRes);
         return IICResponseModel.success(userRes);
     }
@@ -50,10 +50,10 @@ public class AdminUserManageController{
         Map<String,Object> rmap = new HashMap<>();
         int userId = 1;
         //调用有返回数据类型的方法取到城市名称
-            /*String userName = userController.getUserById((long) userId).getCityName();
+            /*String userName = demoThe.getUserById((long) userId).getCityName();
             rmap.put("userName",userName);*/
 
-        //Map<String, Object> userB = userController.getUserB();
+        //Map<String, Object> userB = demoThe.getUserB();
         //rmap.put("cityName",userB);
         return IICResponseModel.success(rmap);
     }
