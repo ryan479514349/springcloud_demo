@@ -24,7 +24,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/adminUserManage")
 @Slf4j
-public class AdminUserManageController{
+public class DemoThe2 {
 
     @Autowired
     DemoThe demoThe;
